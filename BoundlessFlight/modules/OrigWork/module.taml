@@ -1,4 +1,4 @@
-<ModuleDefiniton
+<ModuleDefinition
 	ModuleId="origWork"
 	VersionId="1"
 	Dependencies="ToyAssets=1"
