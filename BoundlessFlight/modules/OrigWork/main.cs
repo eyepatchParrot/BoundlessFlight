@@ -5,6 +5,7 @@ function origWork::create(%this)
 	exec("./scripts/scene.cs");
 	exec("./scripts/game.cs");
 	exec("./scripts/player.cs");
+	exec("./scripts/followmousebehavior.cs");
 	
 	createSceneWindow();
 	createScene();
