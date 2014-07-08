@@ -4,6 +4,7 @@ function origWork::create(%this)
 	exec("./scripts/scenewindow.cs");
 	exec("./scripts/scene.cs");
 	exec("./scripts/game.cs");
+	exec("./scripts/background.cs");
 	exec("./scripts/player.cs");
 	exec("./scripts/controls.cs");
 	exec("./scripts/followmousebehavior.cs");
