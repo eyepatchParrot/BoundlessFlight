@@ -11,7 +11,7 @@ function createSceneWindow()
 	
 	mySceneWindow.setCameraPosition( 0, 0 );
 	mySceneWindow.setCameraSize( 100, 75 );
-	mySceneWindow.setCameraZoom( 1 );
+	mySceneWindow.setCameraZoom( 1.0 );
 	mySceneWindow.setCameraAngle( 0 );
 }
 

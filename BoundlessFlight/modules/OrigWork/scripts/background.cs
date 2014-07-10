@@ -12,10 +12,14 @@ function createBackground()
 	%pbg.setSize( "100 75" );
 	%pbg.setSceneLayer( 30 );
 	%pbg.setImage( "OrigWork:starsParallax" );
-	%pbg.setLinearVelocity( 0.0, -5.0 );
+	
+	%parallax = ParallaxBehavior.createInstance();
+	%pbg.addBehavior( %parallax );
 	myScene.add( %pbg );
 	
 	%pbg2 = %pbg.clone();
-	%pbg2.setPosition( "0 37.5" );
+	%pbg2.setPosition( "0 75" );
+	%parallax = ParallaxBehavior.createInstance();
+	%pbg2.addBehavior( %parallax );
 	myScene.add( %pbg2 );
 }

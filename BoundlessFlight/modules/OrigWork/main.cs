@@ -1,3 +1,6 @@
+$Game::PlayerGroup = 1;
+$Game::ParallaxBoundaryGroup = 2;
+
 function origWork::create(%this)
 {
 	exec("./gui/guiProfiles.cs");
@@ -9,6 +12,7 @@ function origWork::create(%this)
 	exec("./scripts/controls.cs");
 	exec("./scripts/followmousebehavior.cs");
 	exec("./scripts/shootbehavior.cs");
+	exec("./scripts/parallaxbehavior.cs");
 	
 	createSceneWindow();
 	createScene();

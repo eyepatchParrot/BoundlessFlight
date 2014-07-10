@@ -1,15 +1,16 @@
-if ( !isObject(ResetBehavior) )
+if ( !isObject(ParallaxBehavior) )
 {
-	%template = new BehaviorTemplate(ResetBehavior);
+	%template = new BehaviorTemplate(ParallaxBehavior);
 	
-	%template.friendlyName = "Reset Behavior";
+	%template.friendlyName = "Parallax Behavior";
 	%template.behaviorType = "Graphics";
-	%template.description = "When a background goes below the screen reset it above the screen.";
+	%template.description = "Scrolls until unseen the resets to the top of the screen.";
 	
 	%template.addBehaviorField(worldSizeField, "The size of the world", string, "100 75");
+	%template.addBehaviorField( spd, "How fast to parallax", float, -10.0 );
 }
 
-function ResetBehavior::onBehaviorAdd(%this)
+function ParallaxBehavior::onBehaviorAdd(%this)
 {
 	// Insert instantiation behavior here.
 	%worldWidth = getWord( %this.worldSizeField, 0 );
@@ -30,17 +31,22 @@ function ResetBehavior::onBehaviorAdd(%this)
 	%this.owner.createPolygonBoxCollisionShape( %this.owner.getSize() );
 	%this.owner.setCollisionCallback( true );
 	%this.owner.setCollisionGroups( $Game::ParallaxBoundaryGroup );
-	//%this.owner.setBodyType( static );
+	
+	%this.owner.setLinearVelocityY( %this.spd );
 }
 
-function ResetBehavior::onCollision( %this, %obj, %collisionDetails )
+function ParallaxBehavior::onCollision( %this, %obj, %collisionDetails )
 {
-	%velY = %this.owner.getLinearVelocityY();
-	%this.owner.setPositionY( getWord( %this.worldSizeField, 1 ) );
-	%this.owner.setLinearVelocityY( %velY );
+	%this.reset();
 }
 
-function ResetBehavior::onBehaviorRemove(%this)
+function ParallaxBehavior::reset( %this )
+{
+	%this.owner.setPositionY( getWord( %this.worldSizeField, 1 ) );
+	%this.owner.setLinearVelocityY( %this.spd );
+}
+	
+function ParallaxBehavior::onBehaviorRemove(%this)
 {
 	// Insert deletion behavior here.
 }
