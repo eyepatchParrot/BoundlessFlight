@@ -13,6 +13,8 @@ function origWork::create(%this)
 	exec("./scripts/followmousebehavior.cs");
 	exec("./scripts/shootbehavior.cs");
 	exec("./scripts/parallaxbehavior.cs");
+	exec("./scripts/spawner.cs");
+	exec("./scripts/enemy.cs");
 	
 	createSceneWindow();
 	createScene();

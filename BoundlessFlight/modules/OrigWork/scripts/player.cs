@@ -5,7 +5,9 @@ function createPlayer()
 	%p.Position = "0 -30";
 	%p.Size = "5.0 5.0";
 	%p.SceneLayer = 1;
+	%p.Image = "origWork:ship4";
 	
+	// Behaviors
 	%c = FollowMouseBehavior.createInstance();
 	%c.speedField = 30.0;
 	%c.freqField = 200.0;
@@ -13,8 +15,7 @@ function createPlayer()
 	
 	%p.shootBehavior = ShootBehavior.createInstance();
 	%p.addBehavior(%p.shootBehavior);
-	
-	%p.Image = "origWork:ship4";
+	// End Behaviors
 	
 	myScene.add( %p );
 }
