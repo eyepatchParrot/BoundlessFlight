@@ -6,9 +6,9 @@ $Game::BulletGroup = 4;
 function origWork::create(%this)
 {
 	exec("./gui/guiProfiles.cs");
+	exec( "./scripts/console.cs" );
 	exec("./scripts/scenewindow.cs");
 	exec("./scripts/scene.cs");
-	exec("./scripts/game.cs");
 	exec("./scripts/background.cs");
 	exec("./scripts/player.cs");
 	exec("./scripts/controls.cs");
@@ -18,14 +18,30 @@ function origWork::create(%this)
 	exec("./scripts/spawner.cs");
 	exec("./scripts/enemy.cs");
 	
+	%this.add( TamlRead( "./gui/ConsoleDialog.gui.taml" ) );
+	
+	GlobalActionMap.bind( keyboard, "ctrl tilde", toggleConsole );
+	
 	createSceneWindow();
 	createScene();
 	mySceneWindow.setScene(myScene);
 	myScene.setDebugOn("collision", "position", "aabb");
-	createGame();
+	%this.initGame();
 	new ScriptObject(InputManager);
 	mySceneWindow.addInputListener(InputManager);
 }
+
+function origWork::initGame()
+{
+	myScene.clear();
+	createPlayer();
+	createBackground();
+	createSpawner();
+}
+
+//function origWork::initDeath()
+//{
+	
 
 function origWork::destroy(%this)
 {
