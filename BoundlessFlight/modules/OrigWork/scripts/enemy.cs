@@ -11,11 +11,13 @@ function createEnemy( %eRef )
 	%e.Image = "origWork:bug1";
 	%e.setSceneGroup( $Game::EnemyGroup );
 	%e.createCircleCollisionShape( %sz / 2.0 );
-	%e.setCollisionGroups( $Game::PlayerGroup SPC $Game::BulletGroup );
+	%e.setCollisionGroups( $Game::PlayerGroup SPC $Game::BulletGroup SPC $Game::EnemyGroup );
 	%e.setCollisionCallback( true );
 	
 	// Behaviors
-	
+	%ai = EnemyAIBehavior.createInstance();
+	%ai.playerField = Player;
+	%e.addBehavior( %ai );
 	// End Behaviors
 	
 	myScene.add( %e );
@@ -23,5 +25,15 @@ function createEnemy( %eRef )
 
 function Enemy::onCollision(%this, %sceneObject, %collisionDetails)
 {
-	%this.safeDelete();
+	echo( "enemy this" SPC %this.class SPC "scene" SPC %sceneObject.class );
+//	if (%sceneObject.getSceneGroup() != $Game::EnemyGroup)
+//	{
+		echo( "Not enemy" );
+		%this.safeDelete();
+/*	}
+	else
+	{
+		echo( "is enemy" );
+	}
+*/
 }

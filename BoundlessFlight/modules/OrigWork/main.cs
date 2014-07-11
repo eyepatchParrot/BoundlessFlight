@@ -19,6 +19,7 @@ function origWork::create(%this)
 	exec("./scripts/parallaxbehavior.cs");
 	exec("./scripts/spawner.cs");
 	exec("./scripts/enemy.cs");
+	exec("./scripts/enemyaibehavior.cs");
 	
 	%this.add( TamlRead( "./gui/ConsoleDialog.gui.taml" ) );
 	%this.add( TamlRead( "./gui/StoryScreen.gui.taml" ) );
@@ -71,6 +72,7 @@ function origWork::nextStory( %this )
 		%img = getWord( %this.story, %this.storyIdx );
 		StoryButton.setHoverImage( %img );
 		StoryButton.setNormalImage( %img );
+		StoryButton.setDownImage( %img );
 	}
 	else
 	{
