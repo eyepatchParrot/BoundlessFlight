@@ -1,5 +1,7 @@
 $Game::PlayerGroup = 1;
 $Game::ParallaxBoundaryGroup = 2;
+$Game::EnemyGroup = 3;
+$Game::BulletGroup = 4;
 
 function origWork::create(%this)
 {

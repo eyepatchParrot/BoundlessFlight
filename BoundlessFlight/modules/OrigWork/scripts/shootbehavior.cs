@@ -28,6 +28,10 @@ function ShootBehavior::shoot( %this )
 	%b.setFixedAngle( true );
 	%b.setLinearVelocityPolar( 90.0, %this.speedField);
 	%b.playAnimation( %this.animationField );
+	%b.setSceneGroup( $Game::BulletGroup );
+	%sz = mGetMax( getWord( %this.sizeField, 0 ), getWord( %this.sizeField, 1 ) );
+	%b.createCircleCollisionShape( %sz / 2.0 );
+	%b.setCollisionGroups( $Game::EnemyGroup );
 	
 	myScene.add( %b );
 }

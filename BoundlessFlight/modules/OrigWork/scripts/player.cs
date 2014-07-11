@@ -1,11 +1,14 @@
 function createPlayer()
 {
+	%sz = 5.0;
 	%p = new Sprite(Player);
 	%p.setBodyType( dynamic );
 	%p.Position = "0 -30";
-	%p.Size = "5.0 5.0";
-	%p.SceneLayer = 1;
+	%p.Size = %sz SPC %sz;
+	%p.SceneLayer = $Game::PlayerGroup;
 	%p.Image = "origWork:ship4";
+	%p.createCircleCollisionShape( %sz / 2.0 );
+	%p.setCollisionGroups( $Game::EnemyGroup );
 	
 	// Behaviors
 	%c = FollowMouseBehavior.createInstance();
@@ -13,8 +16,8 @@ function createPlayer()
 	%c.freqField = 200.0;
 	%p.addBehavior(%c);
 	
-	%p.shootBehavior = ShootBehavior.createInstance();
-	%p.addBehavior(%p.shootBehavior);
+	%b = ShootBehavior.createInstance();
+	%p.addBehavior(%b);
 	// End Behaviors
 	
 	myScene.add( %p );
@@ -22,5 +25,5 @@ function createPlayer()
 
 function Player::shoot( %this )
 {
-	%this.shootBehavior.shoot();
+	%this.getBehavior("ShootBehavior").shoot();
 }
