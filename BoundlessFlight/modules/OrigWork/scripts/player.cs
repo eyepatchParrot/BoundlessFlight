@@ -27,5 +27,5 @@ function createPlayer()
 function Player::onCollision( %this, %sceneObj, %collisionDetails )
 {
 	%this.safeDelete();
-//	origWork.schedule( 500, "initDeath" );
+	origWork.schedule( 500, "initDie" );
 }

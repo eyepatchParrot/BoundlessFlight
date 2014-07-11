@@ -1,0 +1,12 @@
+<GuiControl
+	Name="StoryScreen"
+	Profile="GuiDefaultProfile" >
+	
+	<GuiImageButtonCtrl
+		Name="StoryButton"
+		Profile="GuiDefaultProfile"
+		Position="0 0"
+		Extent="1024 768"
+		Command="origWork.nextStory();"
+		Visible="1" />
+</GuiControl>
