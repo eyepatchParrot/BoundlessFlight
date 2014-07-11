@@ -10,12 +10,18 @@ function createEnemy( %eRef )
 	%e.setLinearVelocity( 0.0, -15.0 );
 	%e.Image = "origWork:bug1";
 	%e.setSceneGroup( $Game::EnemyGroup );
-	%e.createCircleCollisionShape( %sz );
+	%e.createCircleCollisionShape( %sz / 2.0 );
 	%e.setCollisionGroups( $Game::PlayerGroup SPC $Game::BulletGroup );
+	%e.setCollisionCallback( true );
 	
 	// Behaviors
 	
 	// End Behaviors
 	
 	myScene.add( %e );
+}
+
+function Enemy::onCollision(%this, %sceneObject, %collisionDetails)
+{
+	%this.safeDelete();
 }

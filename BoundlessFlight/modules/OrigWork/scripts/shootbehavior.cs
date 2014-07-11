@@ -32,6 +32,7 @@ function ShootBehavior::shoot( %this )
 	%sz = mGetMax( getWord( %this.sizeField, 0 ), getWord( %this.sizeField, 1 ) );
 	%b.createCircleCollisionShape( %sz / 2.0 );
 	%b.setCollisionGroups( $Game::EnemyGroup );
+	%b.setCollisionCallback( true );
 	
 	myScene.add( %b );
 }
@@ -39,4 +40,9 @@ function ShootBehavior::shoot( %this )
 function ShootBehavior::onBehaviorRemove(%this)
 {
 	// Insert deletion behavior here.
+}
+
+function Bullet::onCollision( %this, %sceneObject, %collisionDetails )
+{
+	%this.safeDelete();
 }

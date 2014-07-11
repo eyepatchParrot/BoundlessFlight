@@ -9,6 +9,7 @@ function createPlayer()
 	%p.Image = "origWork:ship4";
 	%p.createCircleCollisionShape( %sz / 2.0 );
 	%p.setCollisionGroups( $Game::EnemyGroup );
+	%p.setCollisionCallback( true );
 	
 	// Behaviors
 	%c = FollowMouseBehavior.createInstance();
@@ -23,7 +24,8 @@ function createPlayer()
 	myScene.add( %p );
 }
 
-function Player::shoot( %this )
+function Player::onCollision( %this, %sceneObj, %collisionDetails )
 {
-	%this.getBehavior("ShootBehavior").shoot();
+	%this.safeDelete();
+//	origWork.schedule( 500, "initDeath" );
 }
