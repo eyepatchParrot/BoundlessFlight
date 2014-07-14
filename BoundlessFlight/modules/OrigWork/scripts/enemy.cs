@@ -25,15 +25,14 @@ function createEnemy( %eRef )
 
 function Enemy::onCollision(%this, %sceneObject, %collisionDetails)
 {
-	echo( "enemy this" SPC %this.class SPC "scene" SPC %sceneObject.class );
-//	if (%sceneObject.getSceneGroup() != $Game::EnemyGroup)
-//	{
-		echo( "Not enemy" );
-		%this.safeDelete();
-/*	}
-	else
+	if (%sceneObject.getSceneGroup() != $Game::EnemyGroup)
 	{
-		echo( "is enemy" );
+		%explosion = new ParticlePlayer();
+		%explosion.Particle = "ToyAssets:impactExplosion";
+		%explosion.setPosition( %this.getPosition() );
+		%explosion.setSizeScale(2);
+		%explosion.setLinearVelocity( 0.0, -15.0 );
+		myScene.add( %explosion );
+		%this.safeDelete();
 	}
-*/
 }
