@@ -1,16 +1,17 @@
 function createEnemy( %eRef )
 {
-	%sz = 5.0;
-	echo( "Spawn at" SPC %eRef.pos );
+	%xSz = 6.5;
+	%ySz = 5.0;
 	%e = new Sprite();
 	%e.class = "Enemy";
 	%e.setPosition( %eRef.pos );
-	%e.setSize( %sz, %sz );
+	%e.setSize( %xSz, %ySz );
 	%e.SceneLayer = 2;
 	%e.setLinearVelocity( 0.0, -15.0 );
-	%e.Image = "origWork:bug1";
+	%e.Image = "origWork:enemy1";
+	%e.setFlipY( true );
 	%e.setSceneGroup( $Game::EnemyGroup );
-	%e.createCircleCollisionShape( %sz / 2.0 );
+	%e.createCircleCollisionShape( %xSz / 2.0 );
 	%e.setCollisionGroups( $Game::PlayerGroup SPC $Game::BulletGroup SPC $Game::EnemyGroup );
 	%e.setCollisionCallback( true );
 	

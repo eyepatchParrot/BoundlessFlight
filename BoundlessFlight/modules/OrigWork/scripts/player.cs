@@ -1,13 +1,14 @@
 function createPlayer()
 {
-	%sz = 5.0;
+	%xSz = 6.5;
+	%ySz = 5.0;
 	%p = new Sprite(Player);
 	%p.setBodyType( dynamic );
 	%p.Position = "0 -30";
-	%p.Size = %sz SPC %sz;
+	%p.Size = %xSz SPC %ySz;
 	%p.SceneLayer = $Game::PlayerGroup;
-	%p.Image = "origWork:ship4";
-	%p.createCircleCollisionShape( %sz / 2.0 );
+	%p.Image = "origWork:player";
+	%p.createCircleCollisionShape( %xSz / 2.0 );
 	%p.setCollisionGroups( $Game::EnemyGroup );
 	%p.setCollisionCallback( true );
 	
