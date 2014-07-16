@@ -23,6 +23,7 @@ function origWork::create(%this)
 	
 	%this.add( TamlRead( "./gui/ConsoleDialog.gui.taml" ) );
 	%this.add( TamlRead( "./gui/StoryScreen.gui.taml" ) );
+	%this.add( TamlRead( "./gui/HudOverlay.gui.taml" ) );
 	
 	GlobalActionMap.bind( keyboard, "ctrl tilde", toggleConsole );
 

@@ -154,6 +154,13 @@ if (!isObject(GuiBackgroundProfile)) new GuiControlProfile( GuiBackgroundProfile
 
 //-----------------------------------------------------------------------------
 
+if ( !isObject( GuiNoModalProfile ) ) new GuiControlProfile( GuiNoModalProfile : GuiDefaultProfile )
+{
+	modal = false;
+};
+
+//-----------------------------------------------------------------------------
+
 if(!isObject(ConsoleScrollProfile)) new GuiControlProfile( ConsoleScrollProfile : GuiScrollProfile )
 {
     opaque = true;
@@ -180,4 +187,20 @@ if (!isObject(GuiBgButtonProfile)) new GuiControlProfile (GuiBgButtonProfile : G
 	opaque = true;
 	fillColor = DimGray;
 	border = 3;
+};
+
+//-----------------------------------------------------------------------------
+
+if ( !isObject(HudTextProfile) ) new GuiControlProfile (HudTextProfile : GuiDefaultProfile)
+{
+	fontColor = White;
+	fontType = "datacron";
+	fontSize = 48;
+};
+
+//-----------------------------------------------------------------------------
+
+if ( !isObject( HudTimeProfile ) ) new GuiControlProfile (HudTimeProfile : HudTextProfile)
+{
+	fontSize = 64;
 };

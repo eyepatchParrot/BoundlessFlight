@@ -7,6 +7,8 @@ function createSceneWindow()
 		mySceneWindow.Profile = GuiDefaultProfile;
 		
 		Canvas.setContent( mySceneWindow );
+		
+		Canvas.pushDialog( HudOverlay );
 	}
 	
 	mySceneWindow.setCameraPosition( 0, 0 );
