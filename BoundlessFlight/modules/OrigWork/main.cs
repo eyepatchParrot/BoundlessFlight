@@ -41,6 +41,9 @@ function origWork::createGame( %this )
 	createPlayer();
 	createBackground();
 	createSpawner();
+	%this.time = 0;
+	%this.kills = 0;
+	%this.schedule(1000, updateTimer);
 	
 	new ScriptObject(InputManager);
 	mySceneWindow.addInputListener(InputManager);
@@ -83,6 +86,25 @@ function origWork::nextStory( %this )
 				%this.createGame();
 		}
 	}
+}
+
+function origWork::updateTimer( %this )
+{
+	%this.time++;
+	%min = mFloor( %this.time / 60 );
+	%sec = %this.time % 60;
+	if (%sec < 10)
+	{
+		%sec = "0" @ %sec;
+	}
+	HudTimeText.setText(%min @ ":" @ %sec);
+	%this.schedule(1000, updateTimer);
+}
+
+function origWork::incKills( %this )
+{
+	%this.kills++;
+	HudKillsText.setText( %this.kills );
 }
 
 function origWork::destroy(%this)

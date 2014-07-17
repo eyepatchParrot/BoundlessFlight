@@ -14,14 +14,14 @@
 	<GuiTextCtrl
 		Name="HudTimeText"
 		Profile="HudTimeProfile"
-		Position="105 85"
-		Extent="85 70"
-		Text="1:38" />
+		Position="90 85"
+		Extent="105 70"
+		Text="0:00" />
 		
 	<GuiTextCtrl
 		Name="HudKillsText"
 		Profile="HudTextProfile"
 		Position="120 165"
 		Extent="75 30"
-		Text="99" />
+		Text="0" />
 </GuiControl>

@@ -35,5 +35,6 @@ function Enemy::onCollision(%this, %sceneObject, %collisionDetails)
 		%explosion.setLinearVelocity( 0.0, -15.0 );
 		myScene.add( %explosion );
 		%this.safeDelete();
+		OrigWork.incKills();
 	}
 }
