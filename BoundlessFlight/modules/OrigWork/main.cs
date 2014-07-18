@@ -61,31 +61,27 @@ function origWork::destroyGame( %this )
 
 function origWork::initDie( %this )
 {
-	%this.destroyGame();
-	
-	%this.story = %this.dieStory;
-	%this.storyIdx = -1;
-	%this.nextStory();
-	
-	Canvas.setContent( StoryScreen );
+	%this.initStory( %this.dieStory );
 }
 
 function origWork::initEnd( %this )
 {
-	%this.destroyGame();
-	
 	if ( %this.kills > 0 )
 	{
-		%this.story = %this.failStory;
+		%this.initStory( %this.failStory );
 	}
 	else
 	{
-		%this.story = %this.winStory;
+		%this.initStory( %this.winStory );
 	}
-	
+}
+
+function origWork::initStory( %this, %story )
+{
+	%this.destroyGame();
+	%this.story = %story;
 	%this.storyIdx = -1;
 	%this.nextStory();
-	
 	Canvas.setContent( StoryScreen );
 }
 
@@ -102,14 +98,7 @@ function origWork::nextStory( %this )
 	}
 	else
 	{
-		switch$ (%this.story)
-		{
-			case "":
-				%this.createGame();
-		
-			default:
-				%this.createGame();
-		}
+		%this.createGame();
 	}
 }
 
