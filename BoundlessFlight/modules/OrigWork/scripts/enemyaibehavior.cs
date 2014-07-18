@@ -19,7 +19,7 @@ function EnemyAIBehavior::onBehaviorAdd(%this)
 
 function EnemyAIBehavior::updateDirection( %this )
 {
-	if ( !isObject( %this.playerField ) )
+	if ( !isObject( %this.playerField ) || getWord( %this.owner.getPosition(), 1) > 40 )
 	{
 		%this.owner.setLinearVelocityX( 0.0 );
 	}

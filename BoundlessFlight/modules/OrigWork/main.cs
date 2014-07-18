@@ -33,9 +33,10 @@ function origWork::create(%this)
 	%this.failStory = "origWork:fail1";
 	%this.introStory = "origWork:intro1";
 	
-	%this.bookIsOpen = true;
-	
-	%this.initMainMenu();
+	//%this.bookIsOpen = true;
+	%this.createGame();
+	//%this.initMainMenu();
+	alxSetChannelVolume( 1, 0.0 );
 }
 
 function origWork::initMainMenu( %this )
@@ -55,13 +56,15 @@ function origWork::createGame( %this )
 	createSceneWindow();
 	createScene();
 	mySceneWindow.setScene( myScene );
-	myScene.setDebugOn( "collision", "position", "aabb" );
+	// myScene.setDebugOn( "collision", "position", "aabb" );
 	createPlayer();
 	createBackground();
 	createSpawner();
 	%this.time = 0;
-	%this.bossTime = 1;
-	%this.kills = 0;
+	%this.bossTime = 53;
+	%this.kills = -1;
+	%this.incKills();
+	cancel(%this.timerSchedule);
 	%this.timerSchedule = %this.schedule(1000, updateTimer);
 	
 	new ScriptObject(InputManager);
@@ -70,6 +73,7 @@ function origWork::createGame( %this )
 
 function origWork::destroyGame( %this )
 {
+	Spawner.delete();
 	InputManager.delete();
 	destroyScene();
 	destroySceneWindow();
@@ -161,7 +165,8 @@ function origWork::updateTimer( %this )
 		%sec = "0" @ %sec;
 	}
 	HudTimeText.setText(%min @ ":" @ %sec);
-	%this.schedule(1000, updateTimer);
+	cancel( %this.timerSchedule );
+	%this.timerSchedule = %this.schedule(1000, updateTimer);
 	
 	if ( %this.time == %this.bossTime )
 	{

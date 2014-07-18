@@ -2,15 +2,27 @@ function createSpawner()
 {
 	%s = new SimSet( Spawner );
 	
-	%w = createWave( 500 );
-	%w.addEnemy( "0 40" );
-	%s.addWave( %w );
-	
-	%w = createWave();
-	%w.addEnemy("10 40");
-	%w.addEnemy("-10 40");
-	%s.addWave( %w );
-	
+	%s.addNewWave( 3000, "" );
+	%s.addNewWave( 3000, "0 40");
+	%s.addNewWave( 3000, "0 40" SPC "40 40" SPC "-40 40" );
+	%s.addNewWave( 2000, "20 40" SPC "-20 40" );
+	%s.addNewWave( 2000, "-40 40" SPC "-10 40" SPC "10 40" SPC "40 40" );
+	%s.addNewWave( 3000, "0 40" SPC "40 40" SPC "-40 40" SPC "20 52" SPC "-20 52" );
+	%s.addNewWave( 2000, "20 40" SPC "-20 40" );
+	%s.addNewWave( 3000, "-40 40" SPC "0 40" SPC "40 40" SPC "-20 52" SPC "20 52" );
+	%s.addNewWave( 3000, "-40 40" SPC "0 40" SPC "40 40" SPC "-20 52" SPC "20 52" );
+	%s.addNewWave( 3000, "-40 40" SPC "0 40" SPC "40 40" SPC "-20 52" SPC "20 52" );
+	%s.addNewWave( 2000, "-40 40" SPC "-10 40" SPC "10 40" SPC "40 40" );
+	%s.addNewWave( 2000, "-40 40" SPC "-10 40" SPC "10 40" SPC "40 40" );
+	%s.addNewWave( 2000, "-40 40" SPC "0 40" SPC "10 40" SPC "40 40" );
+	%s.addNewWave( 1000, "-40 40" SPC "0 40" SPC "40 40" );
+	%s.addNewWave( 1000, "-40 40" SPC "0 40" SPC "40 40" );
+	%s.addNewWave( 1000, "-40 40" SPC "0 40" SPC "40 40" );
+	%s.addNewWave( 1000, "-40 40" SPC "0 40" SPC "40 40" );
+	%s.addNewWave( 3000, "45 40" SPC "30 46" SPC "15 52" SPC "0 58" SPC "-15 64" SPC "-30 70" SPC "-45 76");
+	%s.addNewWave( 3000, "-30 40" SPC "-15 46" SPC "0 52" SPC "15 58" SPC "30 64" SPC "45 70" );
+	%s.addNewWave( 3000, "-40 40" SPC "0 40" SPC "40 40" SPC "-20 52" SPC "20 52" );
+	%s.addNewWave( 3000, "-40 46" SPC "0 46" SPC "40 46" SPC "-20 40" SPC "20 40" );
 	%s.update();
 }
 
@@ -19,9 +31,19 @@ function Spawner::addWave( %this, %w )
 	%this.add( %w );
 }
 
+function Spawner::addNewWave( %this, %delay, %enemies )
+{
+	%w = createWave( %delay );
+	%max = getWordCount( %enemies );
+	for (%i = 0; %i + 1 < %max; %i += 2 )
+	{
+		%w.addEnemy( getWord( %enemies, %i) SPC getWord( %enemies, %i + 1 ) );
+	}
+	%this.addWave( %w );
+}
+
 function Spawner::update( %this )
 {
-	echo( "Updating. Num waves" SPC %this.getCount() );
 	%w = %this.getObject( 0 );
 	
 	%w.spawn();
@@ -67,7 +89,6 @@ function Wave::popEnemy( %this )
 
 function Wave::spawn( %this )
 {
-	echo( "Spawning wave. Wave is empty:" SPC %this.isEmpty() );
 	while ( !%this.isEmpty() )
 	{
 		createEnemy( %this.popEnemy() );
