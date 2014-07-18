@@ -1,0 +1,8 @@
+ <AudioAsset
+	AssetName="BeepSFX"
+	AssetAutoUnload="0"
+	AudioFile="beep.wav"
+	VolumeChannel="2"
+	Looping="false" />
+
+<!-- https://www.freesound.org/people/Greencouch/sounds/124900/ -->

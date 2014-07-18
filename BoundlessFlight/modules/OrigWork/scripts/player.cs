@@ -38,4 +38,6 @@ function Player::onCollision( %this, %sceneObj, %collisionDetails )
 	%this.safeDelete();
 	%sceneObj.safeDelete();
 	origWork.schedule( 500, "initDie" );
+	
+	alxPlay( "OrigWork:explosionSFX" );
 }

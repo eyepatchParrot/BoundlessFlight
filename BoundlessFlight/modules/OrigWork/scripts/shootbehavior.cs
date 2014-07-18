@@ -35,6 +35,8 @@ function ShootBehavior::shoot( %this )
 	%b.setCollisionCallback( true );
 	
 	myScene.add( %b );
+	
+	alxPlay( "origwork:bulletsfx" );
 }
 
 function ShootBehavior::onBehaviorRemove(%this)

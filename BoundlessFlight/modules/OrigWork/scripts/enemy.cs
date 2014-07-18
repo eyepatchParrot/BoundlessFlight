@@ -55,5 +55,7 @@ function Enemy::onCollision(%this, %sceneObject, %collisionDetails)
 		myScene.add( %explosion );
 		%this.safeDelete();
 		OrigWork.incKills();
+		
+		alxPlay( "origWork:explosionsfx" );
 	}
 }
