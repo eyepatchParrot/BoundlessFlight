@@ -1,3 +1,22 @@
+function createBoss()
+{
+	%xSz = 11.8;
+	%ySz = 10.0;
+	%e = new Sprite();
+	%e.setPosition( 0, 50 );
+	%e.setSize( %xSz, %ySz );
+	%e.SceneLayer = 2;
+	%e.setLinearVelocity( 0.0, -12.0 );
+	%e.Image = "origWork:boss";
+	%e.setFlipY( true );
+	%e.setSceneGroup( $Game::EnemyGroup );
+	%s = %e.createCircleCollisionShape( %xSz / 2.0 );
+	%e.setCollisionShapeIsSensor( %s, true );
+	//	%e.setBodyType( static );
+	
+	myScene.add( %e );
+}
+
 function createEnemy( %eRef )
 {
 	%xSz = 6.5;

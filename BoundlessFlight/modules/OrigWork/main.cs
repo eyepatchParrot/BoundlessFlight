@@ -28,6 +28,8 @@ function origWork::create(%this)
 	GlobalActionMap.bind( keyboard, "ctrl tilde", toggleConsole );
 
 	%this.dieStory = "origWork:die1 origWork:die2";
+	%this.winStory = "origWork:win1";
+	%this.failStory = "origWork:fail1";
 	
 	%this.createGame();
 }
@@ -42,6 +44,7 @@ function origWork::createGame( %this )
 	createBackground();
 	createSpawner();
 	%this.time = 0;
+	%this.bossTime = 1;
 	%this.kills = 0;
 	%this.schedule(1000, updateTimer);
 	
@@ -67,6 +70,25 @@ function origWork::initDie( %this )
 	Canvas.setContent( StoryScreen );
 }
 
+function origWork::initEnd( %this )
+{
+	%this.destroyGame();
+	
+	if ( %this.kills > 0 )
+	{
+		%this.story = %this.failStory;
+	}
+	else
+	{
+		%this.story = %this.winStory;
+	}
+	
+	%this.storyIdx = -1;
+	%this.nextStory();
+	
+	Canvas.setContent( StoryScreen );
+}
+
 function origWork::nextStory( %this )
 {
 	%this.storyIdx++;
@@ -82,7 +104,10 @@ function origWork::nextStory( %this )
 	{
 		switch$ (%this.story)
 		{
-			case %this.dieStory:
+			case "":
+				%this.createGame();
+		
+			default:
 				%this.createGame();
 		}
 	}
@@ -99,6 +124,12 @@ function origWork::updateTimer( %this )
 	}
 	HudTimeText.setText(%min @ ":" @ %sec);
 	%this.schedule(1000, updateTimer);
+	
+	if ( %this.time == %this.bossTime )
+	{
+		createBoss();
+		%this.schedule( 5000, initEnd );
+	}
 }
 
 function origWork::incKills( %this )
