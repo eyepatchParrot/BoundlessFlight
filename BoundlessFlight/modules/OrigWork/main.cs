@@ -24,14 +24,23 @@ function origWork::create(%this)
 	%this.add( TamlRead( "./gui/ConsoleDialog.gui.taml" ) );
 	%this.add( TamlRead( "./gui/StoryScreen.gui.taml" ) );
 	%this.add( TamlRead( "./gui/HudOverlay.gui.taml" ) );
+	%this.add( TamlRead( "./gui/MainMenu.gui.taml" ) );
 	
 	GlobalActionMap.bind( keyboard, "ctrl tilde", toggleConsole );
 
 	%this.dieStory = "origWork:die1 origWork:die2";
 	%this.winStory = "origWork:win1";
 	%this.failStory = "origWork:fail1";
+	%this.introStory = "origWork:intro1";
 	
-	%this.createGame();
+	%this.bookIsOpen = true;
+	
+	%this.initMainMenu();
+}
+
+function origWork::initMainMenu( %this )
+{
+	Canvas.setContent( MainMenu );
 }
 
 function origWork::createGame( %this )
@@ -46,7 +55,7 @@ function origWork::createGame( %this )
 	%this.time = 0;
 	%this.bossTime = 1;
 	%this.kills = 0;
-	%this.schedule(1000, updateTimer);
+	%this.timerSchedule = %this.schedule(1000, updateTimer);
 	
 	new ScriptObject(InputManager);
 	mySceneWindow.addInputListener(InputManager);
@@ -57,6 +66,20 @@ function origWork::destroyGame( %this )
 	InputManager.delete();
 	destroyScene();
 	destroySceneWindow();
+	cancel( %this.timerSchedule );
+	cancel( %this.endSchedule );
+}
+
+function origWork::initIntro( %this )
+{
+	if ( %this.bookIsOpen )
+	{
+		%this.initStory( %this.introStory );
+	}
+	else
+	{
+		%this.createGame();
+	}
 }
 
 function origWork::initDie( %this )
@@ -98,7 +121,14 @@ function origWork::nextStory( %this )
 	}
 	else
 	{
-		%this.createGame();
+		switch$ (%this.story)
+		{
+			case %this.introStory:
+				%this.createGame();
+			
+			default:
+				%this.initMainMenu();
+		}
 	}
 }
 
@@ -117,8 +147,24 @@ function origWork::updateTimer( %this )
 	if ( %this.time == %this.bossTime )
 	{
 		createBoss();
-		%this.schedule( 5000, initEnd );
+		%this.endSchedule = %this.schedule( 5000, initEnd );
 	}
+}
+
+function origWork::toggleBook( %this )
+{
+	%this.bookIsOpen = !%this.bookIsOpen;
+	if ( %this.bookIsOpen )
+	{
+		%img = "origWork:bookOpen";
+	}
+	else
+	{
+		%img = "origWork:bookClosed";
+	}
+	BookButton.setNormalImage( %img );
+	BookButton.setHoverImage( %img );
+	BookButton.setDownImage( %img );
 }
 
 function origWork::incKills( %this )

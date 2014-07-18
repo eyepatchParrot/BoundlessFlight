@@ -1,0 +1,44 @@
+<GuiControl
+	Name="MainMenu"
+	Profile="GuiDefaultProfile" >
+	
+	<GuiImageButtonCtrl
+		Name="MenuBg"
+		Profile="GuiDefaultProfile"
+		Position="0 0"
+		Extent="1024 768"
+		NormalImage="origWork:menuBg"
+		HoverImage="origWork:menuBg"
+		DownImage="origWork:menuBg" />
+	
+	<GuiImageButtonCtrl
+		Name="PlayButton"
+		Profile="GuiDefaultProfile"
+		Position="800 300"
+		Extent="100 100"
+		Command="origWork.initIntro();"
+		NormalImage="origWork:playButton"
+		HoverImage="origWork:playButton"
+		DownImage="origWork:playButton"
+		Visible="1" />
+		
+	<GuiImageButtonCtrl
+		Name="ExitButton"
+		Profile="GuiDefaultProfile"
+		Position="10 658"
+		Extent="230 100"
+		Command="quit();"
+		NormalImage="origWork:exitButton"
+		HoverImage="origWork:exitButtonHover"
+		DownImage="origWork:exitButtonHover" />
+		
+	<GuiImageButtonCtrl
+		Name="BookButton"
+		Profile="GuiDefaultProfile"
+		Position="872 658"
+		Extent="142 100"
+		Command="origWork.toggleBook();"
+		NormalImage="origWork:bookOpen"
+		HoverImage="origWork:bookOpen"
+		DownImage="origWork:bookOpen" />
+</GuiControl>
