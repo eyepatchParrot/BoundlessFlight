@@ -40,11 +40,18 @@ function origWork::create(%this)
 
 function origWork::initMainMenu( %this )
 {
+	alxStopAll();
+	cancel( %this.musicSchedule );
+	alxPlay("origWork:MenuMusic");
 	Canvas.setContent( MainMenu );
 }
 
 function origWork::createGame( %this )
 {
+	alxStopAll();
+	cancel( %this.musicSchedule );
+	%err = alxPlay("origWork:GameMusic");
+	
 	createSceneWindow();
 	createScene();
 	mySceneWindow.setScene( myScene );
@@ -84,19 +91,31 @@ function origWork::initIntro( %this )
 
 function origWork::initDie( %this )
 {
+	alxStopAll();
+	cancel( %this.musicSchedule );
+	%music = "OrigWork:FailMusic";
+	alxPlay( %music );
+	%this.musicSchedule = schedule( alxGetAudioLength( %music ), 0, alxPlay, "OrigWork:MenuMusic" );
 	%this.initStory( %this.dieStory );
 }
 
 function origWork::initEnd( %this )
 {
+	alxStopAll();
+	cancel( %this.musicSchedule );
 	if ( %this.kills > 0 )
 	{
+		%music = "OrigWork:FailMusic";
 		%this.initStory( %this.failStory );
 	}
 	else
 	{
+		%music = "OrigWork:WinMusic";
 		%this.initStory( %this.winStory );
 	}
+	echo( %music );
+	alxPlay( %music );
+	%this.musicSchedule = schedule( alxGetAudioLength( %music ), 0, alxPlay, "OrigWork:MenuMusic" );
 }
 
 function origWork::initStory( %this, %story )

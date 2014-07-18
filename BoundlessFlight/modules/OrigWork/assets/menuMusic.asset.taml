@@ -1,0 +1,6 @@
+ <AudioAsset
+	AssetName="MenuMusic"
+	AssetAutoUnload="0"
+	AudioFile="EgmontOverture.wav"
+	VolumeChannel="1"
+	Looping="true" />

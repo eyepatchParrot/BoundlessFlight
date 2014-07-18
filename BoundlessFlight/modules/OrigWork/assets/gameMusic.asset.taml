@@ -1,0 +1,6 @@
+ <AudioAsset
+	AssetName="GameMusic"
+	AssetAutoUnload="0"
+	AudioFile="IndustrialRevolution.wav"
+	VolumeChannel="1"
+	Looping="true" />

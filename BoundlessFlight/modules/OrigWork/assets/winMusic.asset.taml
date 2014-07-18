@@ -1,0 +1,6 @@
+ <AudioAsset
+	AssetName="WinMusic"
+	AssetAutoUnload="0"
+	AudioFile="SuperFriendly.wav"
+	VolumeChannel="1"
+	Looping="false" />

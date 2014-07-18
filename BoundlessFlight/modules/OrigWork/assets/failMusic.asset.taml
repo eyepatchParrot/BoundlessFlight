@@ -1,0 +1,6 @@
+ <AudioAsset
+	AssetName="FailMusic"
+	AssetAutoUnload="0"
+	AudioFile="OppressiveGloom.wav"
+	VolumeChannel="1"
+	Looping="false" />
