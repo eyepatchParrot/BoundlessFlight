@@ -27,9 +27,7 @@ function createPlayer()
 }
 
 function Player::onCollision( %this, %sceneObj, %collisionDetails )
-{
-	echo( "this" SPC %this.class SPC "scene" SPC %sceneObj.class );
-	
+{	
 	%explosion = new ParticlePlayer();
 	%explosion.Particle = "ToyAssets:impactExplosion";
 	%explosion.setPosition( %this.getPosition() );
