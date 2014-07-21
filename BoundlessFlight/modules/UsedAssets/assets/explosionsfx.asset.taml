@@ -1,0 +1,4 @@
+<AudioAsset
+    AssetName="ExplosionSFX"
+    AssetAutoUnload="0"
+    AudioFile="explosion.wav" />

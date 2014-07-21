@@ -36,7 +36,7 @@ function ShootBehavior::shoot( %this )
 	
 	myScene.add( %b );
 	
-	alxPlay( "origwork:bulletsfx" );
+	alxPlay( "ToyAssets:CannonTowerFireSound" );
 }
 
 function ShootBehavior::onBehaviorRemove(%this)

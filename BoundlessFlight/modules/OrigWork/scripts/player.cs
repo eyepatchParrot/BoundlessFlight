@@ -19,6 +19,7 @@ function createPlayer()
 	%p.addBehavior(%c);
 	
 	%b = ShootBehavior.createInstance();
+	%b.animationField = "OrigWork:bulletAnim";
 	%p.addBehavior(%b);
 	// End Behaviors
 	
@@ -39,5 +40,5 @@ function Player::onCollision( %this, %sceneObj, %collisionDetails )
 	%sceneObj.safeDelete();
 	origWork.schedule( 500, "initDie" );
 	
-	alxPlay( "OrigWork:explosionSFX" );
+	alxPlay( "usedAssets:explosionSFX" );
 }

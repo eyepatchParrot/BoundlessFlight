@@ -28,22 +28,22 @@ function origWork::create(%this)
 	
 	GlobalActionMap.bind( keyboard, "ctrl tilde", toggleConsole );
 
-	%this.dieStory = "origWork:die1 origWork:die2";
+	%this.dieStory = "origWork:die1";
 	%this.winStory = "origWork:win1";
 	%this.failStory = "origWork:fail1";
-	%this.introStory = "origWork:intro1";
+	%this.introStory = "origWork:intro1 origWork:intro2";
 	
-	//%this.bookIsOpen = true;
-	%this.createGame();
-	//%this.initMainMenu();
-	alxSetChannelVolume( 1, 0.0 );
+	%this.bookIsOpen = true;
+	//%this.createGame();
+	%this.initMainMenu();
+	//alxSetChannelVolume( 1, 0.0 );
 }
 
 function origWork::initMainMenu( %this )
 {
 	alxStopAll();
 	cancel( %this.musicSchedule );
-	alxPlay("origWork:MenuMusic");
+	alxPlay("usedAssets:MenuMusic");
 	Canvas.setContent( MainMenu );
 }
 
@@ -51,7 +51,7 @@ function origWork::createGame( %this )
 {
 	alxStopAll();
 	cancel( %this.musicSchedule );
-	%err = alxPlay("origWork:GameMusic");
+	%err = alxPlay("usedAssets:GameMusic");
 	
 	createSceneWindow();
 	createScene();
@@ -97,9 +97,9 @@ function origWork::initDie( %this )
 {
 	alxStopAll();
 	cancel( %this.musicSchedule );
-	%music = "OrigWork:FailMusic";
+	%music = "usedAssets:FailMusic";
 	alxPlay( %music );
-	%this.musicSchedule = schedule( alxGetAudioLength( %music ), 0, alxPlay, "OrigWork:MenuMusic" );
+	%this.musicSchedule = schedule( alxGetAudioLength( %music ), 0, alxPlay, "usedAssets:MenuMusic" );
 	%this.initStory( %this.dieStory );
 }
 
@@ -109,17 +109,17 @@ function origWork::initEnd( %this )
 	cancel( %this.musicSchedule );
 	if ( %this.kills > 0 )
 	{
-		%music = "OrigWork:FailMusic";
+		%music = "usedAssets:FailMusic";
 		%this.initStory( %this.failStory );
 	}
 	else
 	{
-		%music = "OrigWork:WinMusic";
+		%music = "usedAssets:WinMusic";
 		%this.initStory( %this.winStory );
 	}
 	echo( %music );
 	alxPlay( %music );
-	%this.musicSchedule = schedule( alxGetAudioLength( %music ), 0, alxPlay, "OrigWork:MenuMusic" );
+	%this.musicSchedule = schedule( alxGetAudioLength( %music ), 0, alxPlay, "usedAssets:MenuMusic" );
 }
 
 function origWork::initStory( %this, %story )

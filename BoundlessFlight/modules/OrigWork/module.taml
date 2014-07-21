@@ -1,7 +1,7 @@
 <ModuleDefinition
 	ModuleId="origWork"
 	VersionId="1"
-	Dependencies="ToyAssets=1"
+	Dependencies="ToyAssets=1,usedAssets=1"
 	ScriptFile="main.cs"
 	CreateFunction="create"
 	DestroyFunction="destroy">
