@@ -3,6 +3,8 @@ Mac: Run Torque2d.app
 
 Direct your ship with your mouse. Click to shoot. Beware enemy ships. Help and the intro can be toggled by clicking the book in the bottom-right corner.
 
+Warning: The game is completable, but is also quite challenging.
+
 Created by Jon MacCoy and Peter Van Sandt using the Torque2d engine. All scripting was done by Peter, and almost all art was done by Jon. Google Docs and Trello were used for collaboration, and GitHub was used for source control.
 
 Explosion effect and bullet sound are provided with the Torque2d engine and are under the MIT Open Source License.
