@@ -1,4 +1,7 @@
-Run Torque2d.exe to run the game. Direct your ship with your mouse. Click to shoot. Beware enemy ships. Help and the intro can be toggled by clicking the book in the bottom-right corner.
+Windows: Run Torque2d.exe
+Mac: Run Torque2d.app
+
+Direct your ship with your mouse. Click to shoot. Beware enemy ships. Help and the intro can be toggled by clicking the book in the bottom-right corner.
 
 Created by Jon MacCoy and Peter Van Sandt using the Torque2d engine. All scripting was done by Peter, and almost all art was done by Jon. Google Docs and Trello were used for collaboration, and GitHub was used for source control.
 
