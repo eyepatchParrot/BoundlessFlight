@@ -4,14 +4,14 @@ function createBackground()
 	%bg.setPosition( "0 0" );
 	%bg.setSize( "100 75" );
 	%bg.setSceneLayer( 31 );
-	%bg.setImage( "ToyAssets:skyBackground" );
+	%bg.setImage( "OrigWork:background" );
 	myScene.add( %bg );
 	
 	%pbg = new Sprite( ParallaxBackground );
 	%pbg.setPosition( "0 0" );
 	%pbg.setSize( "100 75" );
 	%pbg.setSceneLayer( 30 );
-	%pbg.setImage( "OrigWork:starsParallax" );
+	%pbg.setImage( "OrigWork:bgStars" );
 	
 	%parallax = ParallaxBehavior.createInstance();
 	%pbg.addBehavior( %parallax );
